@@ -73,24 +73,24 @@ for training_name in train_labels:
             # read the image and resize it to a fixed-size
             image = cv2.imread(file)
             image = cv2.resize(image, fixed_size)
-        except Exception as e:
-            print(e)
         ####################################
         # Global Feature extraction
         ####################################
-        fv_hu_moments = fd_hu_moments(image)
-        fv_haralick   = fd_haralick(image)
-        fv_histogram  = fd_histogram(image)
+            fv_hu_moments = fd_hu_moments(image)
+            fv_haralick   = fd_haralick(image)
+            fv_histogram  = fd_histogram(image)
 
-        ###################################
-        # Concatenate global features
-        ###################################
-        global_feature = np.hstack([fv_histogram, fv_haralick, fv_hu_moments])
+            ###################################
+            # Concatenate global features
+            ###################################
+            global_feature = np.hstack([fv_histogram, fv_haralick, fv_hu_moments])
 
-        # update the list of labels and feature vectors
-        labels.append(current_label)
-        global_features.append(global_feature)
-
+            # update the list of labels and feature vectors
+            labels.append(current_label)
+            global_features.append(global_feature)
+        except Exception as e:
+            print(e)
+        
     print("[STATUS] processed folder: {}".format(current_label))
 
 print("[STATUS] completed Global Feature Extraction...")
