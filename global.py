@@ -69,10 +69,12 @@ for training_name in train_labels:
         # get the image file name
         file = dir + "/" + str(x) + ".jpg"
 
-        # read the image and resize it to a fixed-size
-        image = cv2.imread(file)
-        image = cv2.resize(image, fixed_size)
-
+        try:
+            # read the image and resize it to a fixed-size
+            image = cv2.imread(file)
+            image = cv2.resize(image, fixed_size)
+        except Exception as e:
+            print(e)
         ####################################
         # Global Feature extraction
         ####################################
